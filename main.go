@@ -1,9 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"time"
+
+	"github.com/TheL0nelyG0d/pokedex/pokedex/internal/pokeapi"
 )
 
 func main() {
-	fmt.Println("hello world")
+	pokeClient := pokeapi.NewClient(5*time.Second, 5*time.Minute)
+	cfg := &config{
+		pokeapiClient: pokeClient,
+		caughtPokemon: map[string]pokeapi.Pokemon{},
+	}
+
+	startRepl(cfg)
 }
